@@ -14,12 +14,14 @@ extension Entry {
     convenience init(title: String,
                      bodyText: String,
                      identifier: String = "",
+                     mood: String,
                      timestamp: Date = Date(),
                      context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         self.title = title
         self.bodyText = bodyText
         self.identifier = identifier
+        self.mood = mood
         self.timestamp = timestamp
     }
     

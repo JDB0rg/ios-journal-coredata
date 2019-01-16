@@ -153,6 +153,7 @@
                         <outlet property="addEntryBodyTextView" destination="W30-Mk-lTi" id="pfC-10-ODu"/>
                         <outlet property="addEntryTitleTextField" destination="7PH-Sc-uXV" id="YSN-40-XwX"/>
                         <outlet property="entryDateLabel" destination="u8z-ka-Err" id="kD7-3H-Vlh"/>
+                        <outlet property="moodSegmentedControl" destination="bnh-ri-TZx" id="nQF-SN-b7B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgM-Io-grw" userLabel="First Responder" sceneMemberID="firstResponder"/>

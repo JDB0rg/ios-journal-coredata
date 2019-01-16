@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11AA787221EE4153003E4667 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA787121EE4153003E4667 /* DateFormatter.swift */; };
+		11B8567B21EEA6AE007545ED /* EntryMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B8567A21EEA6AE007545ED /* EntryMood.swift */; };
 		11C16FC7219101AD00626FEA /* EntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C16FC6219101AD00626FEA /* EntryController.swift */; };
 		11D37B972190E6260063B654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D37B962190E6260063B654 /* AppDelegate.swift */; };
 		11D37B9C2190E6260063B654 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D37B9A2190E6260063B654 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		11AA787121EE4153003E4667 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		11AA787621EE9E52003E4667 /* Core-Data-Journal 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Core-Data-Journal 2.xcdatamodel"; sourceTree = "<group>"; };
+		11B8567A21EEA6AE007545ED /* EntryMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryMood.swift; sourceTree = "<group>"; };
 		11C16FC6219101AD00626FEA /* EntryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryController.swift; sourceTree = "<group>"; };
 		11D37B932190E6260063B654 /* Core-Data-Journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Core-Data-Journal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D37B962190E6260063B654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				11D37BAA2190E6870063B654 /* Core-Data-Journal.xcdatamodeld */,
 				11D37BB52190EE3C0063B654 /* Entry+Convenience.swift */,
 				11D37BB72190EF1A0063B654 /* CoreDataStack.swift */,
+				11B8567A21EEA6AE007545ED /* EntryMood.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11AA787221EE4153003E4667 /* DateFormatter.swift in Sources */,
+				11B8567B21EEA6AE007545ED /* EntryMood.swift in Sources */,
 				11D37BB82190EF1A0063B654 /* CoreDataStack.swift in Sources */,
 				11D37BB02190E96C0063B654 /* EntriesTableViewController.swift in Sources */,
 				11D37BAC2190E6870063B654 /* Core-Data-Journal.xcdatamodeld in Sources */,
@@ -411,7 +415,7 @@
 				11AA787621EE9E52003E4667 /* Core-Data-Journal 2.xcdatamodel */,
 				11D37BAB2190E6870063B654 /* Core-Data-Journal.xcdatamodel */,
 			);
-			currentVersion = 11D37BAB2190E6870063B654 /* Core-Data-Journal.xcdatamodel */;
+			currentVersion = 11AA787621EE9E52003E4667 /* Core-Data-Journal 2.xcdatamodel */;
 			path = "Core-Data-Journal.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

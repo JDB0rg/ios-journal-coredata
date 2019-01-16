@@ -11,11 +11,7 @@ import CoreData
 
 class EntriesTableViewController: UITableViewController {
 
-    var entries: [Entry] {
-        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
-        let results = (try? CoreDataStack.shared.mainContext.fetch(fetchRequest)) ?? []
-        return results
-    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,7 +28,7 @@ class EntriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return entries.count
+        return entryController.entries.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,7 +36,7 @@ class EntriesTableViewController: UITableViewController {
             fatalError("Error dequeueing cell")
         }
 
-        let entry = entries[indexPath.row]
+        let entry = entryController.entries[indexPath.row]
         
         cell.entryTitleLabel?.text = entry.title
         cell.entryBodyTextlabel?.text = entry.bodyText
@@ -52,7 +48,7 @@ class EntriesTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let entry = entries[indexPath.row]
+            let entry = entryController.entries[indexPath.row]
             let moc = CoreDataStack.shared.mainContext
             moc.delete(entry)
             
@@ -70,10 +66,11 @@ class EntriesTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "EditJournalEntry" {
             let detailVC = segue.destination as! EntryDetailViewController
             if let indexPath = tableView.indexPathForSelectedRow {
-                detailVC.entry = entries[indexPath.row]
+                detailVC.entry = entryController.entries[indexPath.row]
             }
         }
     }
