@@ -105,6 +105,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="nameChanged:" destination="xhH-qk-RKQ" eventType="editingDidEnd" id="3qh-m7-vy7"/>
+                                        </connections>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bnh-ri-TZx">
                                         <rect key="frame" x="0.0" y="41" width="343" height="29"/>
@@ -116,16 +119,15 @@
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUe-lf-lUN">
                                         <rect key="frame" x="0.0" y="80" width="343" height="30"/>
-                                        <state key="normal" title="Button"/>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="248" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W30-Mk-lTi">
-                                        <rect key="frame" x="0.0" y="121" width="343" height="248.5"/>
+                                        <rect key="frame" x="0.0" y="121" width="343" height="219"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8z-ka-Err">
-                                        <rect key="frame" x="0.0" y="380.5" width="343" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8z-ka-Err">
+                                        <rect key="frame" x="0.0" y="351" width="343" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -154,6 +156,7 @@
                         <outlet property="addEntryTitleTextField" destination="7PH-Sc-uXV" id="YSN-40-XwX"/>
                         <outlet property="entryDateLabel" destination="u8z-ka-Err" id="kD7-3H-Vlh"/>
                         <outlet property="moodSegmentedControl" destination="bnh-ri-TZx" id="nQF-SN-b7B"/>
+                        <outlet property="saveButton" destination="3Rx-vd-fmg" id="jfw-4l-wyb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgM-Io-grw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,6 +181,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tYj-Ml-te3"/>
+        <segue reference="lhn-Ha-TNF"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,9 +9,21 @@
 import UIKit
 import CoreData
 
-class EntriesTableViewController: UITableViewController {
+class EntriesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    
+    lazy var fetchedResultsController: NSFetchedResultsController<Entry> = {
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        fetchRequest.sortDescriptors = [ NSSortDescriptor(key: "timestamp", ascending: true) ]
+
+        let moc = CoreDataStack.shared.mainContext
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                         managedObjectContext: moc,
+                                         sectionNameKeyPath: nil,
+                                         cacheName: nil)
+        frc.delegate = self
+        try? frc.performFetch()
+        return frc
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -28,7 +40,7 @@ class EntriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return entryController.entries.count
+        return fetchedResultsController.fetchedObjects?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,7 +48,7 @@ class EntriesTableViewController: UITableViewController {
             fatalError("Error dequeueing cell")
         }
 
-        let entry = entryController.entries[indexPath.row]
+        let entry = fetchedResultsController.object(at: indexPath)
         
         cell.entryTitleLabel?.text = entry.title
         cell.entryBodyTextlabel?.text = entry.bodyText
@@ -48,7 +60,7 @@ class EntriesTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let entry = entryController.entries[indexPath.row]
+            let entry = fetchedResultsController.object(at: indexPath)
             let moc = CoreDataStack.shared.mainContext
             moc.delete(entry)
             
@@ -70,12 +82,45 @@ class EntriesTableViewController: UITableViewController {
         if segue.identifier == "EditJournalEntry" {
             let detailVC = segue.destination as! EntryDetailViewController
             if let indexPath = tableView.indexPathForSelectedRow {
-                detailVC.entry = entryController.entries[indexPath.row]
+                detailVC.entry = fetchedResultsController.object(at: indexPath)
             }
         }
+    }
+    
+    // MARK: - FRC Methods
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+            
+        case .insert:
+            guard let indexPath = newIndexPath else { return }
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .move:
+            guard let oldIndexPath = indexPath else { return }
+            guard let newIndexPath = newIndexPath else { return }
+            tableView.moveRow(at: oldIndexPath, to: newIndexPath)
+        case .update:
+            guard let indexPath = indexPath else { return }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        tableView.endUpdates()
     }
     
     // MARK: - Properties
     
     let entryController = EntryController()
+
 }

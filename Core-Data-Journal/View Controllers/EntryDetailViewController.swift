@@ -19,6 +19,7 @@ class EntryDetailViewController: UIViewController {
     var entryController: EntryController?
     
     // MARK: - Outlets
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var addEntryTitleTextField: UITextField!
     @IBOutlet weak var moodSegmentedControl: UISegmentedControl!
     @IBOutlet weak var addEntryBodyTextView: UITextView!
@@ -26,14 +27,13 @@ class EntryDetailViewController: UIViewController {
     
     // MARK: - Update Views Method
     private func updateViews() {
-        guard let entry = entry,
-            isViewLoaded,
-            let timestamp = entry.timestamp else { return }
+        guard isViewLoaded,
+            let timestamp = entry?.timestamp else { return }
         
-        title = entry.title ?? "Create New Entry"
-        
+        if let entry = entry {
         addEntryTitleTextField.text = entry.title
         addEntryBodyTextView.text = entry.bodyText
+        title = entry.title ?? "Create New Entry"
         
         let mood = entry.entryMood
         let moodIndex = EntryMood.allCases.index(of: mood)!
@@ -43,10 +43,16 @@ class EntryDetailViewController: UIViewController {
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         entryDateLabel.text = formatter.string(from: timestamp)
-        
+        }
     }
-    
+
     // MARK: - Actions
+    @IBAction func nameChanged(_ sender: UITextField) {
+        let currentName = sender.text ?? ""
+        let hasAName = (currentName.isEmpty == false)
+        saveButton.isEnabled = hasAName
+    }
+
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         guard let title = addEntryTitleTextField.text,
